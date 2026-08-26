@@ -1,0 +1,45 @@
+{
+  "configuracao": {
+    "frequencia_execucao": "diaria", // opÃ§Ãµes: 'manual', 'diaria', 'semanal', 'horaria'
+    "horario_execucao": "09:00", // formato HH:MM (apenas para execuÃ§Ã£o programada)
+    "dias_da_semana": ["segunda", "terca", "quarta", "quinta", "sexta"], // para execuÃ§Ã£o semanal
+    "notificacoes": {
+      "por_email": true,
+      "destinatarios": ["admin@escritorio.com"],
+      "assunto_sucesso": "RobÃ´ JurÃ­dico: ExecuÃ§Ã£o concluÃ­da com sucesso",
+      "assunto_erro": "RobÃ´ JurÃ­dico: Erro na execuÃ§Ã£o"
+    },
+    "log": {
+      "nivel": "info", // opÃ§Ãµes: 'debug', 'info', 'warning', 'error'
+      "arquivo": "logs/robo_juridico.log",
+      "manter_dias": 30
+    },
+    "timeout_segundos": 300,
+    "retries": 3,
+    "delay_entre_retries": 10
+  },
+  "integracoes": {
+    "google_drive": {
+      "habilitado": false,
+      "pasta_id": "",
+      "nome_arquivo": "{data}_{cliente}_{processo}.pdf"
+    },
+    "gmail": {
+      "habilitado": true,
+      "assunto": "[IntimaÃ§Ã£o] PublicaÃ§Ã£o no processo {processo}",
+      "template": "OlÃ¡ {cliente},\n\nIdentificamos uma nova publicaÃ§Ã£o no processo {processo}:\n\n- InÃ­cio da sessÃ£o: {inicio}\n- Fim da sessÃ£o: {fim}\n- Prazo oral (48h): {prazo}\n\nTexto da publicaÃ§Ã£o:\n{texto}\n\nAtenciosamente,\n\nEquipe JurÃ­dica"
+    },
+    "webhook": {
+      "habilitado": false,
+      "url": "",
+      "metodo": "POST",
+      "headers": {}
+    }
+  },
+  "filtros": {
+    "tribunais": [], // ex: ["TJMG", "TRF1"] - vazio significa todos
+    "classes_processuais": [], // ex: ["AÃÃO CIVIL PÃBLICA", "EXECUÃÃO FISCAL"] - vazio significa todas
+    "palavras_chave": [], // ex: ["penhora", "arresto", "liminar"] - vazio significa todas
+    "excluir_palavras": [] // ex: ["certidÃ£o", "comunicado"] - vazio significa nenhuma
+  }
+}
